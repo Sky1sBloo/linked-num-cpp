@@ -5,12 +5,13 @@
 
 int main()
 {
-    LinkedInt left("99");
-    LinkedInt right("21");
+    LinkedInt valueA("99");
+    LinkedInt valueB("21");
+    LinkedInt valueC("33");
 
-    right = left;
+    LinkedInt sum = valueA + valueB + valueC;
 
-    std::cout << right << " : " << left << std::endl;
+    std::cout << sum << std::endl;
 
 
 }
