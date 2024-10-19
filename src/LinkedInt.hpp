@@ -3,6 +3,11 @@
 #include <ostream>
 #include <string>
 
+#include "LinkedIntNode.hpp"
+
+/**
+ * Main class for LinkedIntNode Operations
+*/
 class LinkedInt
 {
   public:
@@ -15,5 +20,5 @@ class LinkedInt
 
   private:
     char value;
-    LinkedInt *nextLinkedInt;
+    LinkedIntNode *nextLinkedInt;
 };

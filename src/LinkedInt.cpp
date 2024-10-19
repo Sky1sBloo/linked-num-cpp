@@ -18,12 +18,9 @@ LinkedInt::LinkedInt(char newValue) : value(newValue), nextLinkedInt(nullptr)
 
 LinkedInt::~LinkedInt()
 {
-    LinkedInt *currentNode = this;
-    while (currentNode != nullptr)
+    if (nextLinkedInt != nullptr)
     {
-        LinkedInt *next = currentNode;
-        delete currentNode;
-        currentNode = next;
+        delete nextLinkedInt;
     }
 }
 
