@@ -1,6 +1,5 @@
 #pragma once
 
-#include <algorithm>
 #include <ostream>
 #include <string>
 
@@ -12,100 +11,38 @@
 class LinkedInt
 {
   public:
+    /**
+     * Constructor for building instant string integers
+     */
     LinkedInt(const std::string &newValue);
+
+    /**
+     * Constructor for single characters
+     */
     LinkedInt(char newValue);
+
+    /**
+     * Empty constructor
+     */
     LinkedInt();
 
     LinkedInt(const LinkedInt& newLinkedInt);
     ~LinkedInt();
 
+    /**
+     * Operator for std::cout or std::stringstream
+     */
     friend std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt);
 
-    LinkedInt& operator+=(const LinkedInt& newLinkedInt)
-    {
-        LinkedIntNode *linkNodeA = linkedIntNode;
-        const LinkedIntNode *linkNodeB = newLinkedInt.linkedIntNode;
-        LinkedIntNode *storeCarry = nullptr;  // Node for storing the last node to append a new carry
-
-        bool carryOne = false;
-        while (linkNodeB != nullptr || carryOne)
-        {
-            char valueA = linkNodeA ? linkNodeA->value : '0';
-            char valueB = linkNodeB ? linkNodeB->value : '0';
-
-            char answer = valueA + valueB - '0';
-
-            if (carryOne)
-            {
-                answer += 1;
-                carryOne = false;
-            }
-
-            if (answer > '9')
-            {
-                carryOne = true;
-                answer = answer - 10;
-            }
-
-            if (linkNodeA) 
-            {
-                linkNodeA->value = answer;
-
-                if (!linkNodeA->next)
-                {
-                    storeCarry = linkNodeA;
-                }
-                linkNodeA = linkNodeA->next;
-            }
-            else 
-            {
-                storeCarry->next = new LinkedIntNode({answer, nullptr});
-            }
-            if (linkNodeB) linkNodeB = linkNodeB->next;
-        }
-
-        return *this;
-    }
+    /**
+     * Operator for appending
+     */
+    LinkedInt& operator+=(const LinkedInt& newLinkedInt);
 
     friend LinkedInt operator+(LinkedInt left, const LinkedInt &right)
     {
         left += right;
         return left;
-
-        /*
-        const LinkedIntNode *linkNodeA = left.linkedIntNode;
-        const LinkedIntNode *linkNodeB = right.linkedIntNode;
-
-        bool carryOne = false;
-        std::string sumContainer;
-
-        while (linkNodeA != nullptr || linkNodeB != nullptr || carryOne)
-        {
-            char valueA = linkNodeA ? linkNodeA->value : '0';
-            char valueB = linkNodeB ? linkNodeB->value : '0';
-
-            char answer = valueA + valueB - '0';
-
-            if (carryOne)
-            {
-                answer += 1;
-                carryOne = false;
-            }
-
-            if (answer > '9')
-            {
-                carryOne = true;
-                answer = answer - 10;
-            }
-
-            sumContainer.push_back(answer);
-
-            if (linkNodeA) linkNodeA = linkNodeA->next;
-            if (linkNodeB) linkNodeB = linkNodeB->next;
-        }
-
-        std::reverse(sumContainer.begin(), sumContainer.end());
-        return LinkedInt(sumContainer); */
     }
 
   private:
