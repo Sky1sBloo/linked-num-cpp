@@ -7,16 +7,21 @@ LinkedInt::LinkedInt(const std::string &newValue)
     LinkedIntNode *prevNode = nullptr;
     for (char valuePlace : newValue)
     {
-        LinkedIntNode* newNode = new LinkedIntNode({valuePlace, prevNode});
+        LinkedIntNode *newNode = new LinkedIntNode({valuePlace, prevNode});
         prevNode = newNode;
     }
 
     linkedIntNode = prevNode;
 }
 
-LinkedInt::LinkedInt(char newValue) 
+LinkedInt::LinkedInt(char newValue)
 {
     linkedIntNode = new LinkedIntNode({newValue, nullptr});
+}
+
+LinkedInt::LinkedInt() :
+    linkedIntNode(nullptr)
+{
 }
 
 LinkedInt::~LinkedInt()
