@@ -21,23 +21,21 @@ class LinkedInt
      */
     LinkedInt(char newValue);
 
-    /**
-     * Empty constructor
-     */
     LinkedInt();
-
-    LinkedInt(const LinkedInt& newLinkedInt);
+    LinkedInt(const LinkedInt &newLinkedInt);
     ~LinkedInt();
+
+    LinkedInt &operator=(const LinkedInt &newLinkedInt);
 
     /**
      * Operator for std::cout or std::stringstream
      */
-    friend std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt);
+    friend std::ostream &operator<<(std::ostream &os, const LinkedInt &linkedInt);
 
     /**
      * Operator for appending
      */
-    LinkedInt& operator+=(const LinkedInt& newLinkedInt);
+    LinkedInt &operator+=(const LinkedInt &newLinkedInt);
 
     friend LinkedInt operator+(LinkedInt left, const LinkedInt &right)
     {

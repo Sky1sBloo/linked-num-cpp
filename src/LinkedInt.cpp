@@ -1,6 +1,7 @@
 #include "LinkedInt.hpp"
 #include "LinkedIntNode.hpp"
 #include <algorithm>
+#include <utility>
 
 LinkedInt::LinkedInt(const std::string &newValue)
 {
@@ -62,7 +63,17 @@ LinkedInt::~LinkedInt()
     }
 }
 
-std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt)
+LinkedInt &LinkedInt::operator=(const LinkedInt &newLinkedInt)
+{
+    if (this != &newLinkedInt)
+    {
+        std::swap(*linkedIntNode, *newLinkedInt.linkedIntNode);
+    }
+
+    return *this;
+}
+
+std::ostream &operator<<(std::ostream &os, const LinkedInt &linkedInt)
 {
     std::string linkedIntValue;
     LinkedIntNode *currentNode = linkedInt.linkedIntNode;

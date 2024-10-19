@@ -10,7 +10,6 @@ int main()
     LinkedInt righter("50");
     LinkedInt righest("999");
 
-
     LinkedInt sum = left + right + righter + righest;
 
     std::cout << sum << std::endl;
