@@ -3,31 +3,31 @@
 
 LinkedInt::LinkedInt(const std::string &newValue)
 {
-    LinkedIntNode *currentNode = linkedIntNode;
-    for (char valuePlace: newValue)
+    linkedIntNode = new LinkedIntNode({newValue[0], nullptr});
+    LinkedIntNode *currentNode = linkedIntNode->next;
+
+    for (int i = 1; i < newValue.size(); i++)
     {
-        currentNode->value = valuePlace;
-        currentNode->next = new LinkedIntNode({valuePlace, nullptr});
+        currentNode = new LinkedIntNode({newValue[i], nullptr});
         currentNode = currentNode->next;
     }
 }
 
-LinkedInt::LinkedInt(char newValue) : linkedIntNode(nullptr)
+LinkedInt::LinkedInt(char newValue) 
 {
+    linkedIntNode = new LinkedIntNode({newValue, nullptr});
 }
-
 
 LinkedInt::~LinkedInt()
 {
     LinkedIntNode *currentNode = linkedIntNode;
     while (currentNode != nullptr)
     {
-        LinkedIntNode *next = currentNode->next;
+        LinkedIntNode *nextNode = currentNode->next;
         delete currentNode;
-        currentNode = next;
+        currentNode = nextNode;
     }
 }
-
 
 std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt)
 {
