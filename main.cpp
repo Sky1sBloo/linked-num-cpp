@@ -4,6 +4,8 @@
 
 int main()
 {
-    LinkedInt test("1234");
-    std::cout << test << std::endl;
+    LinkedInt left("10");
+    LinkedInt right("2");
+    LinkedInt sum = left + right;
+    std::cout << sum << std::endl;
 }

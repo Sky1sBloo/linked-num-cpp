@@ -49,3 +49,4 @@ std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt)
     os << linkedIntValue;
     return os;
 }
+
