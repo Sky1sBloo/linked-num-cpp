@@ -65,9 +65,10 @@ LinkedInt::~LinkedInt()
 
 LinkedInt &LinkedInt::operator=(const LinkedInt &newLinkedInt)
 {
+    LinkedInt copyLinkedInt(newLinkedInt);
     if (this != &newLinkedInt)
     {
-        std::swap(*linkedIntNode, *newLinkedInt.linkedIntNode);
+        std::swap(*linkedIntNode, *copyLinkedInt.linkedIntNode);
     }
 
     return *this;
