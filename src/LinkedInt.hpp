@@ -8,10 +8,10 @@ class LinkedInt
   public:
     LinkedInt(const std::string &newValue);
     LinkedInt(char newValue);
-
-    friend std::ostream &operator<<(std::ostream &os, const LinkedInt &linkedInt);
-
     ~LinkedInt();
+
+    friend std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt);
+
 
   private:
     char value;

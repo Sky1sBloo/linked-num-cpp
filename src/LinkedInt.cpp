@@ -28,8 +28,16 @@ LinkedInt::~LinkedInt()
 }
 
 
-std::ostream &operator<<(std::ostream &os, const LinkedInt &linkedInt)
+std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt)
 {
-    os << linkedInt.value;
+    std::string linkedIntValue;
+    LinkedInt *currentNode = &linkedInt;
+    while (currentNode != nullptr)
+    {
+        linkedIntValue.push_back(currentNode->value);
+        currentNode = currentNode->nextLinkedInt;
+    }
+
+    os << linkedIntValue;
     return os;
 }
