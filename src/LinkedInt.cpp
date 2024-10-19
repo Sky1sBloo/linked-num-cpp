@@ -98,26 +98,12 @@ LinkedInt &LinkedInt::operator+=(const LinkedInt &newLinkedInt)
     bool carryOne = false;
     while (linkNodeB != nullptr || carryOne)
     {
-        char valueA = linkNodeA ? linkNodeA->value : '0';
-        char valueB = linkNodeB ? linkNodeB->value : '0';
-
-        char answer = valueA + valueB - '0';
-
-        if (carryOne)
-        {
-            answer += 1;
-            carryOne = false;
-        }
-
-        if (answer > '9')
-        {
-            carryOne = true;
-            answer = answer - 10;
-        }
+        CharAddition answer = addChar(linkNodeA, linkNodeB, carryOne);
+        carryOne = answer.isCarry;
 
         if (linkNodeA)
         {
-            linkNodeA->value = answer;
+            linkNodeA->value = answer.value;
 
             if (!linkNodeA->next)
             {
@@ -127,11 +113,15 @@ LinkedInt &LinkedInt::operator+=(const LinkedInt &newLinkedInt)
         }
         else
         {
-            storeCarry->next = new LinkedIntNode({answer, nullptr});
+            storeCarry->next = new LinkedIntNode({answer.value, nullptr});
         }
+
         if (linkNodeB)
+        {
             linkNodeB = linkNodeB->next;
+        }
     }
 
     return *this;
 }
+

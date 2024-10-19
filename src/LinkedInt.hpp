@@ -5,6 +5,7 @@
 
 #include "LinkedIntNode.hpp"
 
+
 /**
  * Main class for LinkedIntNode Operations
  */
@@ -45,4 +46,9 @@ class LinkedInt
 
   private:
     LinkedIntNode *linkedIntNode;
+
+    /**
+     * Helper function that adds 2 characters of LinkedIntNodes
+    */
+
 };
