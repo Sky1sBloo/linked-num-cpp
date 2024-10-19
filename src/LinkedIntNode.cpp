@@ -1,6 +1,6 @@
 #include "LinkedIntNode.hpp"
 
-static CharAddition addChar(const LinkedIntNode *linkNodeA, const LinkedIntNode *linkNodeB, bool isCarry)
+CharAddition addChar(const LinkedIntNode *linkNodeA, const LinkedIntNode *linkNodeB, bool isCarry)
 {
     char valueA = linkNodeA ? linkNodeA->value : '0';
     char valueB = linkNodeB ? linkNodeB->value : '0';

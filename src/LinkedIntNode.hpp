@@ -18,4 +18,4 @@ struct CharAddition
     bool isCarry;
 };
 
-static CharAddition addChar(const LinkedIntNode *linkNodeA, const LinkedIntNode *linkNodeB, bool isCarry);
+CharAddition addChar(const LinkedIntNode *linkNodeA, const LinkedIntNode *linkNodeB, bool isCarry);
