@@ -4,8 +4,8 @@
 
 int main()
 {
-    LinkedInt left("10");
-    LinkedInt right("2");
-    LinkedInt sum = left + right;
-    std::cout << sum << std::endl;
+    LinkedInt left("99");
+    LinkedInt copyLeft = left;
+
+    std::cout << copyLeft << std::endl;
 }

@@ -15,11 +15,13 @@ class LinkedInt
     LinkedInt(const std::string &newValue);
     LinkedInt(char newValue);
     LinkedInt();
+
+    LinkedInt(const LinkedInt& newLinkedInt);
     ~LinkedInt();
 
     friend std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt);
 
-    friend LinkedInt operator+(LinkedInt left, const LinkedInt &right)
+    friend LinkedInt operator+(const LinkedInt& left, const LinkedInt &right)
     {
         const LinkedIntNode *linkNodeA = left.linkedIntNode;
         const LinkedIntNode *linkNodeB = right.linkedIntNode;
@@ -43,7 +45,7 @@ class LinkedInt
             if (answer > '9')
             {
                 carryOne = true;
-                answer = carryOne - 10;
+                answer = answer - 10;
             }
 
             sumContainer.push_back(answer);

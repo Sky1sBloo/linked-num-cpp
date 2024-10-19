@@ -24,9 +24,25 @@ LinkedInt::LinkedInt() :
 {
 }
 
+LinkedInt::LinkedInt(const LinkedInt& newLinkedInt) : linkedIntNode(nullptr)
+{
+    LinkedIntNode *copyNode = newLinkedInt.linkedIntNode;
+    LinkedIntNode *outputNode = nullptr;
+    while (copyNode != nullptr)
+    {
+        LinkedIntNode *newNode = new LinkedIntNode({copyNode->value, nullptr});
+        newNode->next = outputNode;
+        outputNode = newNode;
+        
+        copyNode = copyNode->next;
+    }
+
+    linkedIntNode = outputNode;
+}
+
 LinkedInt::~LinkedInt()
 {
-    LinkedIntNode *currentNode = linkedIntNode;
+     LinkedIntNode *currentNode = linkedIntNode;
     while (currentNode != nullptr)
     {
         LinkedIntNode *nextNode = currentNode->next;
