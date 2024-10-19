@@ -5,7 +5,9 @@
 int main()
 {
     LinkedInt left("99");
-    LinkedInt copyLeft = left;
+    LinkedInt right("21");
 
-    std::cout << copyLeft << std::endl;
+    LinkedInt sum = left + right ;
+
+    std::cout << sum << std::endl;
 }

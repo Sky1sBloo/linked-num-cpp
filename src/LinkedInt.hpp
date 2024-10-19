@@ -21,8 +21,58 @@ class LinkedInt
 
     friend std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt);
 
-    friend LinkedInt operator+(const LinkedInt& left, const LinkedInt &right)
+    LinkedInt& operator+=(const LinkedInt& newLinkedInt)
     {
+        LinkedIntNode *linkNodeA = linkedIntNode;
+        const LinkedIntNode *linkNodeB = newLinkedInt.linkedIntNode;
+        LinkedIntNode *storeCarry = nullptr;  // Node for storing the last node to append a new carry
+
+        bool carryOne = false;
+        while (linkNodeB != nullptr || carryOne)
+        {
+            char valueA = linkNodeA ? linkNodeA->value : '0';
+            char valueB = linkNodeB ? linkNodeB->value : '0';
+
+            char answer = valueA + valueB - '0';
+
+            if (carryOne)
+            {
+                answer += 1;
+                carryOne = false;
+            }
+
+            if (answer > '9')
+            {
+                carryOne = true;
+                answer = answer - 10;
+            }
+
+            if (linkNodeA) 
+            {
+                linkNodeA->value = answer;
+
+                if (!linkNodeA->next)
+                {
+                    storeCarry = linkNodeA;
+                }
+                linkNodeA = linkNodeA->next;
+            }
+            else 
+            {
+                storeCarry->next = new LinkedIntNode({answer, nullptr});
+            }
+            if (linkNodeB) linkNodeB = linkNodeB->next;
+        }
+
+        return *this;
+    }
+
+    friend LinkedInt operator+(LinkedInt left, const LinkedInt &right)
+    {
+        left += right;
+        return left;
+
+        /*
         const LinkedIntNode *linkNodeA = left.linkedIntNode;
         const LinkedIntNode *linkNodeB = right.linkedIntNode;
 
@@ -55,7 +105,7 @@ class LinkedInt
         }
 
         std::reverse(sumContainer.begin(), sumContainer.end());
-        return LinkedInt(sumContainer);
+        return LinkedInt(sumContainer); */
     }
 
   private:
