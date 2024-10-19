@@ -25,7 +25,6 @@ class LinkedInt
     LinkedInt();
     LinkedInt(const LinkedInt &newLinkedInt);
     ~LinkedInt();
-
     LinkedInt &operator=(const LinkedInt &newLinkedInt);
 
     /**
@@ -34,10 +33,13 @@ class LinkedInt
     friend std::ostream &operator<<(std::ostream &os, const LinkedInt &linkedInt);
 
     /**
-     * Operator for appending
+     * Operator for adding and assigning LinkedInts 
      */
     LinkedInt &operator+=(const LinkedInt &newLinkedInt);
 
+    /**
+     * Operator for adding LinkedInts
+    */
     friend LinkedInt operator+(LinkedInt left, const LinkedInt &right)
     {
         left += right;
@@ -46,9 +48,4 @@ class LinkedInt
 
   private:
     LinkedIntNode *linkedIntNode;
-
-    /**
-     * Helper function that adds 2 characters of LinkedIntNodes
-    */
-
 };
