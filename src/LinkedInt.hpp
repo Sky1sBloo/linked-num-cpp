@@ -19,6 +19,5 @@ class LinkedInt
 
 
   private:
-    char value;
-    LinkedIntNode *nextLinkedInt;
+    LinkedIntNode *linkedIntNode;
 };

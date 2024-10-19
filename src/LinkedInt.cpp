@@ -1,26 +1,30 @@
 #include "LinkedInt.hpp"
+#include "LinkedIntNode.hpp"
 
 LinkedInt::LinkedInt(const std::string &newValue)
 {
-    LinkedInt *currentNode = this;
+    LinkedIntNode *currentNode = linkedIntNode;
     for (char valuePlace: newValue)
     {
         currentNode->value = valuePlace;
-        currentNode->nextLinkedInt = new LinkedInt(valuePlace);
-        currentNode = currentNode->nextLinkedInt;
+        currentNode->next = new LinkedIntNode({valuePlace, nullptr});
+        currentNode = currentNode->next;
     }
 }
 
-LinkedInt::LinkedInt(char newValue) : value(newValue), nextLinkedInt(nullptr)
+LinkedInt::LinkedInt(char newValue) : linkedIntNode(nullptr)
 {
 }
 
 
 LinkedInt::~LinkedInt()
 {
-    if (nextLinkedInt != nullptr)
+    LinkedIntNode *currentNode = linkedIntNode;
+    while (currentNode != nullptr)
     {
-        delete nextLinkedInt;
+        LinkedIntNode *next = currentNode->next;
+        delete currentNode;
+        currentNode = next;
     }
 }
 
@@ -28,11 +32,11 @@ LinkedInt::~LinkedInt()
 std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt)
 {
     std::string linkedIntValue;
-    LinkedInt *currentNode = &linkedInt;
+    LinkedIntNode *currentNode = linkedInt.linkedIntNode;
     while (currentNode != nullptr)
     {
         linkedIntValue.push_back(currentNode->value);
-        currentNode = currentNode->nextLinkedInt;
+        currentNode = currentNode->next;
     }
 
     os << linkedIntValue;
