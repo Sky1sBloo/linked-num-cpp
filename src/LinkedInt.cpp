@@ -1,16 +1,17 @@
 #include "LinkedInt.hpp"
 #include "LinkedIntNode.hpp"
+#include <algorithm>
 
 LinkedInt::LinkedInt(const std::string &newValue)
 {
-    linkedIntNode = new LinkedIntNode({newValue[0], nullptr});
-    LinkedIntNode *currentNode = linkedIntNode->next;
-
-    for (int i = 1; i < newValue.size(); i++)
+    LinkedIntNode *prevNode = nullptr;
+    for (char valuePlace : newValue)
     {
-        currentNode = new LinkedIntNode({newValue[i], nullptr});
-        currentNode = currentNode->next;
+        LinkedIntNode* newNode = new LinkedIntNode({valuePlace, prevNode});
+        prevNode = newNode;
     }
+
+    linkedIntNode = prevNode;
 }
 
 LinkedInt::LinkedInt(char newValue) 
@@ -35,9 +36,10 @@ std::ostream &operator<<(std::ostream &os, LinkedInt &linkedInt)
     LinkedIntNode *currentNode = linkedInt.linkedIntNode;
     while (currentNode != nullptr)
     {
-        linkedIntValue.push_back(currentNode->value);
+        linkedIntValue += currentNode->value;
         currentNode = currentNode->next;
     }
+    std::reverse(linkedIntValue.begin(), linkedIntValue.end());
 
     os << linkedIntValue;
     return os;
