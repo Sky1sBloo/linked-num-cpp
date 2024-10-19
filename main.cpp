@@ -12,6 +12,4 @@ int main()
     LinkedInt sum = valueA + valueB + valueC;
 
     std::cout << sum << std::endl;
-
-
 }
