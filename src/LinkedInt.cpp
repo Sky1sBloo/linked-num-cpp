@@ -1,14 +1,14 @@
 #include "LinkedInt.hpp"
 
-LinkedInt::LinkedInt(const std::string& newValue) 
+LinkedInt::LinkedInt(const std::string &newValue)
 {
-    for (char place : newValue)
+    LinkedInt *currentNode = this;
+    for (char valuePlace: newValue)
     {
-        nextLinkedInt = std::make_unique<LinkedInt>(newValue);
+        currentNode->value = valuePlace;
     }
 }
 
-LinkedInt::LinkedInt(char newValue) :
-    value(newValue)
+LinkedInt::LinkedInt(char newValue) : value(newValue), nextLinkedInt(nullptr)
 {
 }
