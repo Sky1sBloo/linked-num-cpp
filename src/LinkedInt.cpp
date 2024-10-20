@@ -111,7 +111,7 @@ LinkedInt &LinkedInt::operator+=(const LinkedInt &newLinkedInt)
             }
             linkNodeA = linkNodeA->next;
         }
-        else
+        else if (!storeCarry)
         {
             storeCarry->next = new LinkedIntNode({answer.value, nullptr});
         }

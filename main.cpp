@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 #include "LinkedInt.hpp"
 
@@ -11,14 +10,5 @@ int main()
 
     LinkedInt sum = valueA + valueB + valueC;
 
-    {
-        // Scope to test destructor test from copy
-        LinkedInt valueD(valueA);
-        LinkedInt valueE('2');
-        valueE = valueC;
-
-        std::cout << "ValueD = " << valueD << " ValueE = "<< valueE << '\n';
-    }
-
-    std::cout << "ValueA = " << valueA << " ValueC = " << valueC << " Sum = " << sum << std::endl;
+    std::cout << "Sum = " << sum << std::endl;
 }
