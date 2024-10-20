@@ -8,10 +8,12 @@
 
 int main(int argc, char **argv)
 {
-    /*
-    if (argc < 2)
+    if (argc != 2)
     {
-        std::cerr << "Arguments too few" << std::endl;
+        std::cerr << "Arguments too few\n"
+                  << "Usage: linked-int-cpp [equation]\n"
+                  << "Example: linked-int-cpp 1+2" << std::endl;
+        return 1;
     }
 
     std::vector<LinkedInt> addends;
@@ -26,21 +28,22 @@ int main(int argc, char **argv)
         {
             numericals.push_back(value);
         }
-        if (value == '+')
+        else if (value == '+')
         {
             addends.emplace_back(numericals);
             numericals.clear();
         }
+        else if (value != ' ')
+        {
+            std::cerr << "Unknown value: " << value << std::endl;
+            return 1;
+        }
     }
-    
+
     addends.emplace_back(numericals);
 
     const LinkedInt sum = std::accumulate(addends.begin(), addends.end(), LinkedInt('0'));
     std::cout << sum << std::endl;
-    */
-    LinkedInt first("5");
-    LinkedInt second("20009");
 
-    LinkedInt sum(first + second);
-    std::cout << sum << std::endl;
+    return 0;
 }
