@@ -114,12 +114,10 @@ LinkedInt &LinkedInt::operator+=(const LinkedInt &newLinkedInt)
         else if (!storeCarry)
         {
             storeCarry->next = new LinkedIntNode({answer.value, nullptr});
+            storeCarry = storeCarry->next;
         }
 
-        if (linkNodeB)
-        {
-            linkNodeB = linkNodeB->next;
-        }
+        linkNodeB = linkNodeB->next;
     }
 
     return *this;
