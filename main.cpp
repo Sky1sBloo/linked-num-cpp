@@ -1,14 +1,29 @@
+#include <cstring>
 #include <iostream>
+#include <numeric>
+#include <vector>
 
 #include "LinkedInt.hpp"
 
-int main()
+int main(int argc, char** argv)
 {
-    LinkedInt valueA("99");
-    LinkedInt valueB("21");
-    LinkedInt valueC("33");
+    if (argc < 2)
+    {
+        std::cerr << "Arguments too few" << std::endl;
+    }
 
-    LinkedInt sum = valueA + valueB + valueC;
+    std::vector<LinkedInt> values;
 
-    std::cout << "Sum = " << sum << std::endl;
+    for (int i = 1; i < argc; i++)
+    {
+        bool isAddition = strcmp(argv[i], "+") == 0;
+
+        if (!isAddition)
+        {
+            values.emplace_back(argv[i]);
+        }
+    }
+    
+    LinkedInt sum = std::accumulate(values.begin(), values.end(), LinkedInt('0'));
+    std::cout << sum << std::endl;
 }
