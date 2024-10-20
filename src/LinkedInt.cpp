@@ -28,7 +28,7 @@ LinkedInt::LinkedInt(const LinkedInt &newLinkedInt) : linkedIntNode(nullptr)
 {
     LinkedIntNode *copyNode = newLinkedInt.linkedIntNode;
     LinkedIntNode *outputNode = nullptr;
-    while (copyNode != nullptr)
+    while (copyNode)
     {
         LinkedIntNode *newNode = new LinkedIntNode({copyNode->value, nullptr});
 
@@ -78,7 +78,7 @@ std::ostream &operator<<(std::ostream &os, const LinkedInt &linkedInt)
 {
     std::string linkedIntValue;
     LinkedIntNode *currentNode = linkedInt.linkedIntNode;
-    while (currentNode != nullptr)
+    while (currentNode)
     {
         linkedIntValue += currentNode->value;
         currentNode = currentNode->next;
