@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     std::cout << sum << std::endl;
     */
     LinkedInt first("5");
-    LinkedInt second("20");
+    LinkedInt second("20009");
 
     LinkedInt sum(first + second);
     std::cout << sum << std::endl;
