@@ -41,3 +41,12 @@ linked-int-cpp 1+2+3
 returns 6
 ```
 
+## Library
+### LinkedInt class
+Main class for handling Linked List for representing Integers. See `LinkedInt.hpp` for constructor information.
+
+### Adding LinkedInts
+The LinkedInt class overloads the `+` and `+=` operator.
+
+### Accessing Values from LinkedInt
+The class overloads the ostream `<<` operator. You can store it via `std::stringstream`.
