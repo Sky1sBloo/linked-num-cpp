@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
+    if (argc < 2)
     {
         std::cerr << "Arguments too few\n"
                   << "Usage: linked-int-cpp [equation]\n"
@@ -16,12 +16,15 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    // To support spaces
+    std::string operation;
+    for (int i = 1; i < argc; i++)
+    {
+        operation += argv[i];
+    }
+
     std::vector<LinkedInt> addends;
-
-    // Used std::string for easier looping
-    const std::string operation = argv[1];
-
-    std::string numericals;
+    std::string numericals;  // To support values more than 9
     for (char value : operation)
     {
         if (isdigit(value))
