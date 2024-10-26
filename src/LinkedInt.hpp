@@ -24,6 +24,7 @@ class LinkedInt
 
     LinkedInt();
     LinkedInt(const LinkedInt &newLinkedInt);
+    LinkedInt(LinkedInt &&moveLinkedInt);
     ~LinkedInt();
     LinkedInt &operator=(const LinkedInt &newLinkedInt);
 

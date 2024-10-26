@@ -52,6 +52,12 @@ LinkedInt::LinkedInt(const LinkedInt &newLinkedInt) : linkedIntNode(nullptr)
     linkedIntNode = outputNode;
 }
 
+LinkedInt::LinkedInt(LinkedInt &&moveLinkedInt)
+{
+    linkedIntNode = moveLinkedInt.linkedIntNode;
+    moveLinkedInt.linkedIntNode = nullptr;
+}
+
 LinkedInt::~LinkedInt()
 {
     LinkedIntNode *currentNode = linkedIntNode;
