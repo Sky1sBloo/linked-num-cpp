@@ -52,10 +52,8 @@ LinkedInt::LinkedInt(const LinkedInt &newLinkedInt) : linkedIntNode(nullptr)
     linkedIntNode = outputNode;
 }
 
-LinkedInt::LinkedInt(LinkedInt &&moveLinkedInt)
+LinkedInt::LinkedInt(LinkedInt &&moveLinkedInt) : linkedIntNode(std::exchange(moveLinkedInt.linkedIntNode, nullptr))
 {
-    linkedIntNode = moveLinkedInt.linkedIntNode;
-    moveLinkedInt.linkedIntNode = nullptr;
 }
 
 LinkedInt::~LinkedInt()
@@ -77,6 +75,13 @@ LinkedInt &LinkedInt::operator=(const LinkedInt &newLinkedInt)
         std::swap(*linkedIntNode, *copyLinkedInt.linkedIntNode);
     }
 
+    return *this;
+}
+
+LinkedInt &LinkedInt::operator=(LinkedInt &&moveLinkedInt)
+{
+    LinkedInt temp(std::move(moveLinkedInt));
+    std::swap(linkedIntNode, temp.linkedIntNode);
     return *this;
 }
 
@@ -128,4 +133,3 @@ LinkedInt &LinkedInt::operator+=(const LinkedInt &newLinkedInt)
 
     return *this;
 }
-

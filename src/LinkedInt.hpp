@@ -27,6 +27,7 @@ class LinkedInt
     LinkedInt(LinkedInt &&moveLinkedInt);
     ~LinkedInt();
     LinkedInt &operator=(const LinkedInt &newLinkedInt);
+    LinkedInt &operator=(LinkedInt &&moveLinkedInt);
 
     /**
      * Operator for std::cout or std::stringstream
