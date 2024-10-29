@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     std::string numericals;  // To support values more than 9
     for (char value : operation)
     {
-        if (isdigit(value))
+        if (std::isdigit(value))
         {
             numericals.push_back(value);
         }
