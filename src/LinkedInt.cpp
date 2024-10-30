@@ -93,7 +93,6 @@ std::ostream& operator<<(std::ostream& os, const LinkedInt& linkedInt)
 
     std::reverse(linkedIntValue.begin(), linkedIntValue.end());
 
-
     os << linkedIntValue;
     return os;
 }
@@ -111,51 +110,20 @@ LinkedInt& LinkedInt::operator+=(const LinkedInt& newLinkedInt)
 
         if (owner) {
             owner->value = answer.value;
-            linkedIntNode = owner;
+
+            // When the first value is too small
+            if (owner->next == nullptr && (toAdd->next != nullptr || isCarry)) {
+                owner->next = new LinkedIntNode({ '0', nullptr });
+            }
             owner = owner->next;
         } else {
-            owner = new LinkedIntNode({ answer.value, linkedIntNode });
-            linkedIntNode = owner;
+            owner = new LinkedIntNode({ answer.value, nullptr });
             owner = owner->next;
         }
-        if (toAdd)
+
+        if (toAdd) {
             toAdd = toAdd->next;
-    }
-    /*
-    LinkedIntNode* linkNodeA = linkedIntNode;
-    const LinkedIntNode* linkNodeB = newLinkedInt.linkedIntNode;
-    LinkedIntNode* storeCarry = nullptr; // Node for storing the last node to append a new carry
-    LinkedIntNode* storeCarryCurrent = storeCarry;
-
-    bool carryOne = false;
-    while (linkNodeB != nullptr || carryOne) {
-        CharAddition answer = addChar(linkNodeA, linkNodeB, carryOne);
-        carryOne = answer.isCarry;
-
-        if (linkNodeA) {
-            linkNodeA->value = answer.value;
-
-            if (!linkNodeA->next) {
-                storeCarry = linkNodeA;
-            }
-            linkNodeA = linkNodeA->next;
-        } else {
-            if (storeCarryCurrent) {
-                storeCarryCurrent->next = new LinkedIntNode({ answer.value, nullptr });
-            } else {
-                storeCarryCurrent = new LinkedIntNode({ answer.value, nullptr });
-            }
-            storeCarryCurrent = storeCarryCurrent->next;
         }
-
-        linkNodeB = linkNodeB->next;
     }
-
-    while (storeCarry) {
-        linkNodeA = storeCarry;
-        linkNodeA = storeCarry->next;
-        storeCarry = storeCarry->next;
-    } */
-
     return *this;
 }

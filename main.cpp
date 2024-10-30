@@ -44,8 +44,9 @@ int main(int argc, char** argv)
 
     addends.emplace_back(numericals);
 
+
     const LinkedInt sum = std::accumulate(addends.begin(), addends.end(), LinkedInt('0'));
-    std::cout << sum << std::endl;
+    std::cout << sum << std::endl; 
 
     return 0;
 }
