@@ -112,7 +112,8 @@ LinkedInt& LinkedInt::operator+=(const LinkedInt& newLinkedInt)
             owner->value = answer.value;
 
             // When the first value is too small
-            if (owner->next == nullptr && (toAdd->next != nullptr || isCarry)) {
+            bool nextLoopExist = (toAdd != nullptr && toAdd->next != nullptr) || isCarry;
+            if (owner->next == nullptr && nextLoopExist) {
                 owner->next = new LinkedIntNode({ '0', nullptr });
             }
             owner = owner->next;
