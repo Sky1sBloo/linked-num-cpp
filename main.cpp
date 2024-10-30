@@ -6,10 +6,9 @@
 
 #include "LinkedInt.hpp"
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-    if (argc < 2)
-    {
+    if (argc < 2) {
         std::cerr << "Arguments too few\n"
                   << "Usage: linked-int-cpp [equation]\n"
                   << "Example: linked-int-cpp 1+2" << std::endl;
@@ -18,23 +17,18 @@ int main(int argc, char **argv)
 
     // To support spaces
     std::string operation;
-    for (int i = 1; i < argc; i++)
-    {
+    for (int i = 1; i < argc; i++) {
         operation += argv[i];
     }
 
     std::vector<LinkedInt> addends;
-    std::string numericals;  // To support values more than 9
-    bool prevIsOperation = false;  // To check for trailing operations
-    for (char value : operation)
-    {
-        if (std::isdigit(value))
-        {
+    std::string numericals; // To support values more than 9
+    bool prevIsOperation = false; // To check for trailing operations
+    for (char value : operation) {
+        if (std::isdigit(value)) {
             numericals.push_back(value);
             prevIsOperation = false;
-        }
-        else if (value == '+')
-        {
+        } else if (value == '+') {
             if (prevIsOperation) {
                 std::cerr << "Trailing operation: " << value << std::endl;
                 return 1;
@@ -42,9 +36,7 @@ int main(int argc, char **argv)
             addends.emplace_back(numericals);
             numericals.clear();
             prevIsOperation = true;
-        }
-        else if (value != ' ')
-        {
+        } else if (value != ' ') {
             std::cerr << "Unknown value: " << value << std::endl;
             return 1;
         }
