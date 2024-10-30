@@ -7,15 +7,11 @@ LinkedInt::LinkedInt(const std::string& newValue)
 {
     for (char valuePlace : newValue) {
         if (linkedIntNode) {
-            LinkedIntNode* currentPtr = linkedIntNode;
-
-            while (currentPtr->next != nullptr) {
-                currentPtr = currentPtr->next;
-            }
-
-            currentPtr->next = new LinkedIntNode({valuePlace, nullptr});
+            LinkedIntNode* prev = linkedIntNode;
+            linkedIntNode = linkedIntNode->next;
+            linkedIntNode = new LinkedIntNode({ valuePlace, prev });
         } else {
-            linkedIntNode = new LinkedIntNode({valuePlace, nullptr});
+            linkedIntNode = new LinkedIntNode({ valuePlace, nullptr });
         }
     }
 }
@@ -94,6 +90,9 @@ std::ostream& operator<<(std::ostream& os, const LinkedInt& linkedInt)
         linkedIntValue += currentNode->value;
         currentNode = currentNode->next;
     }
+
+    std::reverse(linkedIntValue.begin(), linkedIntValue.end());
+
 
     os << linkedIntValue;
     return os;
