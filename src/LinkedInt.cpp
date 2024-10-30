@@ -96,9 +96,31 @@ std::ostream& operator<<(std::ostream& os, const LinkedInt& linkedInt)
 
 LinkedInt& LinkedInt::operator+=(const LinkedInt& newLinkedInt)
 {
+    LinkedIntNode* owner = linkedIntNode;
+    const LinkedIntNode* toAdd = newLinkedInt.linkedIntNode;
+
+    bool isCarry = false;
+
+    while (toAdd != nullptr || isCarry) {
+        CharAddition answer = addChar(owner, toAdd, isCarry);
+        isCarry = answer.isCarry;
+
+        if (owner) {
+            owner->value = answer.value;
+            linkedIntNode = owner;
+            owner = owner->next;
+        } else {
+            owner = new LinkedIntNode({answer.value, owner});
+            owner = owner->next;
+        }
+        if (toAdd)
+            toAdd = toAdd->next;
+    }
+    /*
     LinkedIntNode* linkNodeA = linkedIntNode;
     const LinkedIntNode* linkNodeB = newLinkedInt.linkedIntNode;
     LinkedIntNode* storeCarry = nullptr; // Node for storing the last node to append a new carry
+    LinkedIntNode* storeCarryCurrent = storeCarry;
 
     bool carryOne = false;
     while (linkNodeB != nullptr || carryOne) {
@@ -113,12 +135,22 @@ LinkedInt& LinkedInt::operator+=(const LinkedInt& newLinkedInt)
             }
             linkNodeA = linkNodeA->next;
         } else {
-            storeCarry->next = new LinkedIntNode({ answer.value, nullptr });
-            storeCarry = storeCarry->next;
+            if (storeCarryCurrent) {
+                storeCarryCurrent->next = new LinkedIntNode({ answer.value, nullptr });
+            } else {
+                storeCarryCurrent = new LinkedIntNode({ answer.value, nullptr });
+            }
+            storeCarryCurrent = storeCarryCurrent->next;
         }
 
         linkNodeB = linkNodeB->next;
     }
+
+    while (storeCarry) {
+        linkNodeA = storeCarry;
+        linkNodeA = storeCarry->next;
+        storeCarry = storeCarry->next;
+    } */
 
     return *this;
 }
