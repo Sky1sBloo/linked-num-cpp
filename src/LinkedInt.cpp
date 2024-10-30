@@ -5,13 +5,12 @@
 
 LinkedInt::LinkedInt(const std::string& newValue)
 {
-    LinkedIntNode* prevNode = nullptr;
+    LinkedIntNode* currentNode = nullptr;
+    linkedIntNode = currentNode;
     for (char valuePlace : newValue) {
-        LinkedIntNode* newNode = new LinkedIntNode({ valuePlace, prevNode });
-        prevNode = newNode;
+        currentNode = new LinkedIntNode({valuePlace, nullptr});
+        currentNode = currentNode->next;
     }
-
-    linkedIntNode = prevNode;
 }
 
 LinkedInt::LinkedInt(char newValue)
