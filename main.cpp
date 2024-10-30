@@ -25,16 +25,23 @@ int main(int argc, char **argv)
 
     std::vector<LinkedInt> addends;
     std::string numericals;  // To support values more than 9
+    bool prevIsOperation = false;  // To check for trailing operations
     for (char value : operation)
     {
         if (std::isdigit(value))
         {
             numericals.push_back(value);
+            prevIsOperation = false;
         }
         else if (value == '+')
         {
+            if (prevIsOperation) {
+                std::cerr << "Trailing operation: " << value << std::endl;
+                return 1;
+            }
             addends.emplace_back(numericals);
             numericals.clear();
+            prevIsOperation = true;
         }
         else if (value != ' ')
         {
