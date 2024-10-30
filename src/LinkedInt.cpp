@@ -59,7 +59,7 @@ LinkedInt::LinkedInt(LinkedInt &&moveLinkedInt) : linkedIntNode(std::exchange(mo
 LinkedInt::~LinkedInt()
 {
     LinkedIntNode *currentNode = linkedIntNode;
-    while (currentNode != nullptr)
+    while (currentNode)
     {
         LinkedIntNode *nextNode = currentNode->next;
         delete currentNode;
