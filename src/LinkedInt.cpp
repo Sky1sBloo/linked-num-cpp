@@ -5,11 +5,14 @@
 
 LinkedInt::LinkedInt(const std::string& newValue)
 {
-    LinkedIntNode* currentNode = nullptr;
-    linkedIntNode = currentNode;
     for (char valuePlace : newValue) {
-        currentNode = new LinkedIntNode({valuePlace, nullptr});
-        currentNode = currentNode->next;
+
+        if (linkedIntNode) {
+            LinkedIntNode* newNode = new LinkedIntNode({ valuePlace, linkedIntNode });
+            linkedIntNode = newNode;
+        } else {
+            linkedIntNode = new LinkedIntNode({valuePlace, nullptr});
+        }
     }
 }
 
@@ -109,7 +112,8 @@ LinkedInt& LinkedInt::operator+=(const LinkedInt& newLinkedInt)
             linkedIntNode = owner;
             owner = owner->next;
         } else {
-            owner = new LinkedIntNode({answer.value, owner});
+            owner = new LinkedIntNode({ answer.value, linkedIntNode });
+            linkedIntNode = owner;
             owner = owner->next;
         }
         if (toAdd)
